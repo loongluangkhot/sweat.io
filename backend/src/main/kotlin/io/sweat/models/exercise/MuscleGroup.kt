@@ -1,24 +1,13 @@
 package io.sweat.models.exercise
 
-import lombok.Data
-import lombok.Generated
-import javax.persistence.*
+import io.sweat.models.common.Item
+import javax.persistence.Entity
+import javax.persistence.ManyToMany
+import javax.persistence.Table
 
-@Data
 @Entity
 @Table(name = "muscle_group")
-class MuscleGroup(name:String, desc:String)  {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false)
-    var id: Long? = null
-
-    @Column(nullable = false)
-    var name:String = name
-
-    @Column(nullable = false)
-    var desc:String = desc
-
-    @ManyToMany(mappedBy = "muscleGroups")
-    var exercises: Set<Exercise>? = null
+class MuscleGroup(name: String, description: String) : Item(name, description) {
+    @ManyToMany(mappedBy = "muscleGroup")
+    var exercise: Set<Exercise> = setOf()
 }

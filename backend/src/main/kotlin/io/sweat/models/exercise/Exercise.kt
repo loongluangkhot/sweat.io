@@ -1,29 +1,27 @@
 package io.sweat.models.exercise
 
-import lombok.Data
-import lombok.Generated
+import io.sweat.models.common.Item
+import io.sweat.models.media.Image
+import io.sweat.models.media.Video
+import org.apache.commons.lang3.builder.ToStringBuilder
 import javax.persistence.*
 
-@Data
 @Entity
 @Table(name = "exercise")
-class Exercise(name:String, desc:String) {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false)
-    var id: Long? = null
-
-    @Column(nullable = false)
-    var name:String = name
-
-    @Column(nullable = false)
-    var desc:String = desc
-
-    @ManyToMany
+class Exercise(name: String, description: String) : Item(name, description) {
+    @ManyToMany(cascade = [CascadeType.PERSIST, CascadeType.MERGE])
     @JoinTable(name = "exercise_muscle_group")
-    var muscleGroups: Set<MuscleGroup>? = null
+    var muscleGroup: Set<MuscleGroup> = setOf()
 
-    @ManyToMany
+    @ManyToMany(cascade = [CascadeType.PERSIST, CascadeType.MERGE])
     @JoinTable(name = "exercise_equipment")
-    var equipments: Set<Equipment>? = null
+    var equipment: Set<Equipment> = setOf()
+
+    @OneToMany(orphanRemoval = true, cascade = [CascadeType.ALL])
+    @JoinTable(name = "exercise_video")
+    var video: Set<Video> = setOf()
+
+    @OneToMany(cascade = [CascadeType.PERSIST, CascadeType.MERGE])
+    @JoinTable(name = "exercise_image")
+    var image: Set<Image> = setOf()
 }
