@@ -1,10 +1,9 @@
 package io.sweat.models.common
 
-import org.apache.commons.lang3.builder.ToStringBuilder
 import javax.persistence.*
 
 @MappedSuperclass
-open class Item(name: String = "", description: String = "") : ILoggable {
+class Item(name: String = "", description: String = "") : ILoggable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)

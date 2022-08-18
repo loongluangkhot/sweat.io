@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 @RequestMapping("/exercises")
 interface IExerciseController {
     @PostMapping
-    fun createExercise(@RequestBody exercises: Exercise): Exercise
+    fun createExercise(@RequestBody exercise: Exercise): Exercise
 
     @GetMapping("/{id}")
     fun getExercise(@PathVariable("id") id:Int): Exercise

@@ -3,25 +3,24 @@ package io.sweat.models.exercise
 import io.sweat.models.common.Item
 import io.sweat.models.media.Image
 import io.sweat.models.media.Video
-import org.apache.commons.lang3.builder.ToStringBuilder
 import javax.persistence.*
 
 @Entity
 @Table(name = "exercise")
 class Exercise(name: String, description: String) : Item(name, description) {
-    @ManyToMany(cascade = [CascadeType.PERSIST, CascadeType.MERGE])
+    @ManyToMany(cascade = [CascadeType.PERSIST, CascadeType.MERGE], fetch = FetchType.EAGER)
     @JoinTable(name = "exercise_muscle_group")
-    var muscleGroup: Set<MuscleGroup> = setOf()
+    var muscleGroup: MutableSet<MuscleGroup> = mutableSetOf()
 
-    @ManyToMany(cascade = [CascadeType.PERSIST, CascadeType.MERGE])
+    @ManyToMany(cascade = [CascadeType.PERSIST, CascadeType.MERGE], fetch = FetchType.EAGER)
     @JoinTable(name = "exercise_equipment")
-    var equipment: Set<Equipment> = setOf()
+    var equipment: MutableSet<Equipment> = mutableSetOf()
 
-    @OneToMany(orphanRemoval = true, cascade = [CascadeType.ALL])
+    @OneToMany(orphanRemoval = true, cascade = [CascadeType.ALL], fetch = FetchType.EAGER)
     @JoinTable(name = "exercise_video")
-    var video: Set<Video> = setOf()
+    var video: MutableSet<Video> = mutableSetOf()
 
-    @OneToMany(cascade = [CascadeType.PERSIST, CascadeType.MERGE])
+    @OneToMany(orphanRemoval = true, cascade = [CascadeType.ALL], fetch = FetchType.EAGER)
     @JoinTable(name = "exercise_image")
-    var image: Set<Image> = setOf()
+    var image: MutableSet<Image> = mutableSetOf()
 }

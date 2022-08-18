@@ -6,6 +6,11 @@ spring:
     username: sweatadmin
     password: password
 
+logbook:
+  format.style: json
+
 logging:
   level:
-    org.zalando.logbook: TRACE
+    org:
+      springframework.web.filter.CommonsRequestLoggingFilter: DEBUG
+      zalando.logbook: TRACE
