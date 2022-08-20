@@ -14,3 +14,4 @@ logging:
     org:
       springframework.web.filter.CommonsRequestLoggingFilter: DEBUG
       zalando.logbook: TRACE
+      hibernate.SQL: DEBUG
