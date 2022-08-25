@@ -10,7 +10,11 @@ class ExerciseController(private val exerciseService: ExerciseService) : IExerci
         return exerciseService.createExercise(exercise)
     }
 
-    override fun getExercise(id: Int): Exercise {
-        return exerciseService.getExercise(id)
+    override fun getExercise(id: Int, eager: Boolean): Exercise {
+        return exerciseService.getExercise(id, eager)
+    }
+
+    override fun getAllExercises(eager: Boolean): List<Exercise> {
+        return exerciseService.getAllExercises(eager)
     }
 }

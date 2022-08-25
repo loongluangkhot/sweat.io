@@ -11,5 +11,5 @@ import javax.persistence.Table
 class Equipment(name: String, description: String) : Item(name, description) {
     @ManyToMany(mappedBy = "equipment")
     @JsonIgnore
-    var exercise: MutableSet<Exercise> = mutableSetOf()
+    var exercise: MutableSet<Exercise>? = null
 }

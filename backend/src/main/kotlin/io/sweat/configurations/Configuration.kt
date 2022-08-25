@@ -1,5 +1,7 @@
 package io.sweat.configurations
 
+import com.fasterxml.jackson.datatype.hibernate5.Hibernate5Module
+import com.fasterxml.jackson.databind.Module
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.InjectionPoint
@@ -17,4 +19,7 @@ class Configuration {
             injectionPoint.methodParameter?.containingClass // constructor
                 ?:injectionPoint.field?.declaringClass) // or field injection
     }
+
+    @Bean
+    fun hibernate5Module(): Module = Hibernate5Module()
 }

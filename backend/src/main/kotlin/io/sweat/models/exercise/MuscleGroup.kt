@@ -11,5 +11,5 @@ import javax.persistence.Table
 class MuscleGroup(name: String, description: String) : Item(name, description) {
     @ManyToMany(mappedBy = "muscleGroup")
     @JsonIgnore
-    var exercise: MutableSet<Exercise> = mutableSetOf()
+    var exercise: MutableSet<Exercise>? = null
 }

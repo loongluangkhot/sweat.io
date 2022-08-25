@@ -10,17 +10,17 @@ import javax.persistence.*
 class Exercise(name: String, description: String) : Item(name, description) {
     @ManyToMany(cascade = [CascadeType.PERSIST, CascadeType.MERGE])
     @JoinTable(name = "exercise_muscle_group")
-    var muscleGroup: MutableSet<MuscleGroup> = mutableSetOf()
+    var muscleGroup: MutableSet<MuscleGroup>? = null
 
     @ManyToMany(cascade = [CascadeType.PERSIST, CascadeType.MERGE])
     @JoinTable(name = "exercise_equipment")
-    var equipment: MutableSet<Equipment> = mutableSetOf()
+    var equipment: MutableSet<Equipment>? = null
 
-    @OneToMany(orphanRemoval = true, cascade = [CascadeType.ALL])
+    @OneToMany(cascade = [CascadeType.ALL])
     @JoinTable(name = "exercise_video")
-    var video: MutableSet<Video> = mutableSetOf()
+    var video: MutableSet<Video>? = null
 
-    @OneToMany(orphanRemoval = true, cascade = [CascadeType.ALL])
+    @OneToMany(cascade = [CascadeType.ALL])
     @JoinTable(name = "exercise_image")
-    var image: MutableSet<Image> = mutableSetOf()
+    var image: MutableSet<Image>? = null
 }
