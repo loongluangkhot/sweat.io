@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import './button.css';
   import { createEventDispatcher } from 'svelte';
   /**
